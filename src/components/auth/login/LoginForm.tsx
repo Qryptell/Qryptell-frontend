@@ -17,9 +17,6 @@ import * as z from "zod";
 import AuthSubmitButton from "../AuthSubmitButton";
 
 const formSchema = z.object({
-  username: z.string().min(3, {
-    message: "Username should have  3 characters",
-  }),
   email: z.string().min(5, {
     message: "Enter a valid Email",
   }),
@@ -28,13 +25,12 @@ const formSchema = z.object({
   }),
 });
 
-export default function RegisterForm() {
+export default function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
       email: "",
       password: "",
     },
@@ -54,25 +50,6 @@ export default function RegisterForm() {
     <div className="flex flex-col w-full space-y-2.5">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormMessage className="text-start" />
-                <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="Username"
-                    {...field}
-                    className="w-full rounded-sm py-6 bg-zinc-200/40 border-[.5px]
-                    focus-visible:ring-0 peer border-black/50"
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-
           <FormField
             control={form.control}
             name="email"
@@ -122,13 +99,13 @@ export default function RegisterForm() {
               </FormItem>
             )}
           />
-          <AuthSubmitButton >Sign Up</AuthSubmitButton>
+          <AuthSubmitButton>Login</AuthSubmitButton>
         </form>
       </Form>
       <span className="flex space-x-1 text-center items-center justify-center text-sm">
-        <p>Already have an account?</p>
-        <Link href="/login">
-          <p className="text-[#00A3FF]">Login</p>
+        <p>Dont have an account?</p>
+        <Link href="/register">
+          <p className="text-[#00A3FF]">Register</p>
         </Link>
       </span>
     </div>
