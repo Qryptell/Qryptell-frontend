@@ -5,7 +5,7 @@ export default function AuthLayout({
 }) {
   return (
     <main
-      className="h-screen w-full flex items-center justify-center 
+      className="min-h-screen pt-3 pb-3 w-full flex items-center justify-center 
     bg-[#4A2B8B] px-6 md:px-0"
     >
       {children}
