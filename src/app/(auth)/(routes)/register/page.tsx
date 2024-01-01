@@ -1,12 +1,12 @@
 //  /register(Register Page)
 
-import LoginForm from "@/components/auth/register/RegisterForm";
+import GithubButton from "@/components/auth/GithubButton";
+import RegisterForm from "@/components/auth/register/RegisterForm";
 import { Metadata } from "next";
-import { FaGithub } from "react-icons/fa";
 
 export const metadata: Metadata = {
-  title: "LunarLoom-Login",
-  description: "Login in to LunarLoom",
+  title: "LunarLoom-Register",
+  description: "Register to use LunarLoom",
 };
 
 export default function RegisterPage() {
@@ -22,13 +22,7 @@ export default function RegisterPage() {
         </p>
 
         {/* Github Login Button */}
-        <button
-          className="bg-[#483375] w-full flex items-center justify-center text-white
-       space-x-2 py-2.5 rounded-sm hover:bg-opacity-90 mt-2.5"
-        >
-          <FaGithub size="24px" />
-          <span className="text-sm">Login with Github</span>
-        </button>
+        <GithubButton />
 
         {/* Divider */}
         <div className="inline-flex items-center justify-center w-full px-2">
@@ -42,7 +36,7 @@ export default function RegisterPage() {
         </div>
       </div>
 
-      <LoginForm />
+      <RegisterForm />
     </section>
   );
 }
