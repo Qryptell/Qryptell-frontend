@@ -7,7 +7,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "LunarLoom-Login",
   description: "Login in to LunarLoom",
-};
+}; 
 
 export default function LoginPage() {
   return (

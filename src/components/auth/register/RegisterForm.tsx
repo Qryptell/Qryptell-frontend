@@ -15,6 +15,9 @@ import { useForm } from "react-hook-form";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import * as z from "zod";
 import AuthSubmitButton from "../AuthSubmitButton";
+import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
+import { useRouter } from "next/navigation";
+
 
 const formSchema = z.object({
   username: z.string().min(3, {
@@ -28,7 +31,10 @@ const formSchema = z.object({
   }),
 });
 
+
 export default function RegisterForm() {
+
+  const router = useRouter()
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -40,12 +46,25 @@ export default function RegisterForm() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  const axiosConfig: AxiosRequestConfig = {
+    withCredentials: true,
+  };
 
+  async function onSubmit(registerData: z.infer<typeof formSchema>) {
+    console.log(registerData)
     try {
-      // Send data to backend
-      form.reset();
+      // axios.create({
+      //   withCredentials:true,
+      //   baseURL:'http://localhost:4000'
+      // })
+      axios.post("http://localhost:4000/register", registerData, axiosConfig).then(({ data }: AxiosResponse) => {
+        console.log(data)
+        if (data.success) {
+          router.push('/verify-email')
+          form.reset();
+        } else {
+        }
+      })
     } catch (error) {
       console.log(error);
     }
