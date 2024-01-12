@@ -15,6 +15,8 @@ import { useForm } from "react-hook-form";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import * as z from "zod";
 import AuthSubmitButton from "../AuthSubmitButton";
+import axios, { AxiosResponse } from 'axios'
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().min(5, {
@@ -28,6 +30,8 @@ const formSchema = z.object({
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
+  const router = useRouter()
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,10 +41,14 @@ export default function LoginForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-
+    console.log(values)
     try {
-      // Send data to backend
+      axios.post('http://localhost:4000/login', values).then((res: AxiosResponse) => {
+        console.log(res)
+        if (res.data.success) {
+          router.push('/chat')
+        }
+      })
       form.reset();
     } catch (error) {
       console.log(error);

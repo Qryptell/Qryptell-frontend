@@ -8,7 +8,7 @@ export default function ChatHeader() {
         <SearchBar />
 
         {/*Add Friend */}
-        <button className="bg-[#4D6069] py-3 px-4 text-sm">
+        <button className="bg-[#4D6069] py-3 px-4 text-sm rounded-md">
           Add new Friend
         </button>
       </div>
