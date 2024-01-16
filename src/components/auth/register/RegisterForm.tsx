@@ -8,7 +8,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useUserStore } from "@/store/userStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import Link from "next/link";
@@ -34,7 +33,6 @@ const formSchema = z.object({
 
 export default function RegisterForm() {
   const router = useRouter();
-  const setAccessToken = useUserStore((state) => state.setAccessToken);
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -62,10 +60,9 @@ export default function RegisterForm() {
         .then(({ data }: AxiosResponse) => {
           console.log(data);
 
-          if (!data?.success) return toast.error("Something went wrong");
+          if (!data?.success) return toast.error(data?.message);
 
-          setAccessToken(data?.accessToken);
-          toast.success("OTP sent to your email");
+          toast.success(data?.message);
           router.push("/verify-email");
         });
     } catch (error) {

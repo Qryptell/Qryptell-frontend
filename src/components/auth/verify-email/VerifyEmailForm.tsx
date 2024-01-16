@@ -45,7 +45,8 @@ export default function VerifyEmailForm() {
         .then(({ data }: AxiosResponse) => {
           console.log(data);
 
-          if (!data?.success) return toast.error("Invalid OTP");
+          if (!data?.success)
+            return toast.error(data?.message || "Something went wrong!");
 
           setAccessToken(data?.accessToken);
           toast.success("Logged in successfully!");

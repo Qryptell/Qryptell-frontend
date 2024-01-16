@@ -51,7 +51,8 @@ export default function LoginForm() {
         .then((res: AxiosResponse) => {
           console.log(res);
 
-          if (!res?.data?.success) return toast.error("Something went wrong");
+          if (!res?.data?.success)
+            return toast.error(res?.data?.message || "Something went wrong!");
 
           setAccessToken(res?.data?.accessToken);
           toast.success("Logged in successfully!");
