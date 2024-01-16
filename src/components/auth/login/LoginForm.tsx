@@ -8,15 +8,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useUserStore } from "@/store/userStore";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios, { AxiosResponse } from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { toast } from "sonner";
 import * as z from "zod";
 import AuthSubmitButton from "../AuthSubmitButton";
-import axios, { AxiosResponse } from 'axios'
-import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().min(5, {
@@ -29,8 +31,9 @@ const formSchema = z.object({
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const setAccessToken = useUserStore((state) => state.setAccessToken);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -41,17 +44,22 @@ export default function LoginForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+    console.log(values);
     try {
-      axios.post('http://localhost:4000/login', values).then((res: AxiosResponse) => {
-        console.log(res)
-        if (res.data.success) {
-          router.push('/chat')
-        }
-      })
-      form.reset();
+      axios
+        .post("http://localhost:4000/login", values)
+        .then((res: AxiosResponse) => {
+          console.log(res);
+
+          if (!res?.data?.success) return toast.error("Something went wrong");
+
+          setAccessToken(res?.data?.accessToken);
+          toast.success("Logged in successfully!");
+          router.push("/chat");
+        });
     } catch (error) {
       console.log(error);
+      toast.error((error as Error).message || "Something went wrong");
     }
   }
   return (

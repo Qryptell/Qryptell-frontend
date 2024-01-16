@@ -8,16 +8,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useUserStore } from "@/store/userStore";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { toast } from "sonner";
 import * as z from "zod";
 import AuthSubmitButton from "../AuthSubmitButton";
-import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
-import { useRouter } from "next/navigation";
-
 
 const formSchema = z.object({
   username: z.string().min(3, {
@@ -31,10 +32,9 @@ const formSchema = z.object({
   }),
 });
 
-
 export default function RegisterForm() {
-
-  const router = useRouter()
+  const router = useRouter();
+  const setAccessToken = useUserStore((state) => state.setAccessToken);
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -51,22 +51,28 @@ export default function RegisterForm() {
   };
 
   async function onSubmit(registerData: z.infer<typeof formSchema>) {
-    console.log(registerData)
+    console.log(registerData);
     try {
       // axios.create({
       //   withCredentials:true,
       //   baseURL:'http://localhost:4000'
       // })
-      axios.post("http://localhost:4000/register", registerData, axiosConfig).then(({ data }: AxiosResponse) => {
-        console.log(data)
-        if (data.success) {
-          router.push('/verify-email')
-          form.reset();
-        } else {
-        }
-      })
+      axios
+        .post("http://localhost:4000/register", registerData, axiosConfig)
+        .then(({ data }: AxiosResponse) => {
+          console.log(data);
+
+          if (!data?.success) return toast.error("Something went wrong");
+
+          setAccessToken(data?.accessToken);
+          toast.success("OTP sent to your email");
+          router.push("/verify-email");
+        });
     } catch (error) {
       console.log(error);
+      toast.error((error as Error).message || "Something went wrong");
+    } finally {
+      form.reset();
     }
   }
   return (
@@ -141,7 +147,7 @@ export default function RegisterForm() {
               </FormItem>
             )}
           />
-          <AuthSubmitButton >Sign Up</AuthSubmitButton>
+          <AuthSubmitButton>Sign Up</AuthSubmitButton>
         </form>
       </Form>
       <span className="flex space-x-1 text-center items-center justify-center text-sm">
