@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-const useUserStore = create<UserStoreProps>((set) => ({
+const useUserStore = create<UserStore>((set) => ({
   accessToken: null,
   setAccessToken: (accessToken) => set({ accessToken }),
 }));

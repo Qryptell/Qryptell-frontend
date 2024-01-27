@@ -31,7 +31,7 @@ export default function ChatInput() {
   return (
     <footer className="px-2 mb-2 w-full">
       <form
-        className="bg-[#221F1F] rounded-md w-full p-4 flex items-center"
+        className="bg-[#221F1F] rounded-md w-full p-4 flex items-center fixed bottom-0"
         onSubmit={handleSubmit}
       >
         <div className="flex items-center space-x-4 flex-1">
