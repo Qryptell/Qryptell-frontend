@@ -8,7 +8,7 @@ export default function ChatHeader() {
 let username:String  = ''
   useUserStore((state) => {
     if(state.accessToken){
-    username = jwtDecode(state.accessToken).username;
+    username = jwtDecode(state.accessToken)?.username;
   }
   });
 
