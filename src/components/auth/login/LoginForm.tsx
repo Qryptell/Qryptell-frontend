@@ -47,7 +47,7 @@ export default function LoginForm() {
     console.log(values);
     try {
       axios
-        .post("http://localhost:4000/login", values)
+        .post("http://localhost:4000/auth/login", values)
         .then((res: AxiosResponse) => {
           console.log(res);
 

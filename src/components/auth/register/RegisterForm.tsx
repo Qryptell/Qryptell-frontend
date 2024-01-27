@@ -51,12 +51,8 @@ export default function RegisterForm() {
   async function onSubmit(registerData: z.infer<typeof formSchema>) {
     console.log(registerData);
     try {
-      // axios.create({
-      //   withCredentials:true,
-      //   baseURL:'http://localhost:4000'
-      // })
       axios
-        .post("http://localhost:4000/register", registerData, axiosConfig)
+        .post("http://localhost:4000/auth/register", registerData, axiosConfig)
         .then(({ data }: AxiosResponse) => {
           console.log(data);
 
