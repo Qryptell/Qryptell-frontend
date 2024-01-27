@@ -5,7 +5,7 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormMessage,
+  FormMessage,  
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useUserStore } from "@/store/userStore";
@@ -41,7 +41,7 @@ export default function VerifyEmailForm() {
     try {
       console.log(values);
       axios
-        .post("http://localhost:4000/verify-email", values, axiosConfig)
+        .post("http://localhost:4000/auth/verify-email", values, axiosConfig)
         .then(({ data }: AxiosResponse) => {
           console.log(data);
 

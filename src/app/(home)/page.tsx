@@ -13,7 +13,7 @@ export default function HomePage() {
       <div className="flex flex-col h-full items-center justify-center space-y-2">
         <h1 className="font-light text-2xl md:text-3xl">Welcome to</h1>
         <h1 className="font-bold text-4xl md:text-6xl">LunarLoom</h1>
-        <Link href="/chat">
+        <Link href="/login">
           <button className="bg-blue-500 px-8 py-2 rounded-md my-3 hover:brightness-90 ">
             Get Started
           </button>
