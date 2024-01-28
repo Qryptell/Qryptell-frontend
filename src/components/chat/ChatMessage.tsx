@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 
 
-export default function ChatMessage({isUser,image,msg}:{isUser?:boolean,image?:string,msg?:string} ) {
+export default function ChatMessage({ isUser, image, msg }: { isUser?: boolean, image?: string, msg?: string }) {
   return (
     <div
       className={cn(
@@ -13,14 +13,17 @@ export default function ChatMessage({isUser,image,msg}:{isUser?:boolean,image?:s
     >
       <div
         className={cn(
-          "py-4 px-6 rounded-t-2xl max-w-fit",
-          isUser ? "bg-pink-700 rounded-bl-2xl" : "bg-black  rounded-br-2xl",
-          image && "clsess here"
-        )} 
+          "py-2 px-4 rounded-t-2xl max-w-fit",
+          isUser ? "bg-purple-800 rounded-bl-2xl" : "bg-pink-700  rounded-br-2xl",
+          image && "py-1 px-1"
+        )}
       >
-         {msg}
+        {msg}
+        {image && <img src={image} className={cn(
+          "w-300 h-auto max-w-full max-h-64 rounded-t-2xl",
+          isUser ? "bg-purple-800 rounded-bl-2xl" : "bg-black  rounded-br-2xl")}
+        />}
       </div>
-        <img src = "https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg" className="w-300 h-auto max-w-full max-h-64 rounded-lg m-5"/>
     </div>
   );
 }
