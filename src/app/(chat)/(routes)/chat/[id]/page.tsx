@@ -16,19 +16,19 @@ export default function UserChatPage({ params: { id } }: UserChatPageProps) {
       <div className="flex-1 overflow-y-scroll pb-52 pt-4 space-y-6 px-8 scrollbar-hide">
         <EncryptionMessage />
         <div className="space-y-2">
-          <ChatMessage />
-          <ChatMessage />
-          <ChatMessage isUser={true} />
-          <ChatMessage />
-          <ChatMessage isUser={true} />
-          <ChatMessage />
-          <ChatMessage isUser={true} />
-          <ChatMessage isUser={true} />
-          <ChatMessage isUser={true} />
-          <ChatMessage isUser={true} />
-          <ChatMessage />
-          <ChatMessage />
-          <ChatMessage isUser={true} />
+          <ChatMessage msg="hi" />
+          <ChatMessage msg="how are" isUser />
+          <ChatMessage msg="Iam Fine"  />
+          <ChatMessage msg="Iam Fine" isUser />
+          <ChatMessage msg="Iam Fine" isUser={true} />
+          <ChatMessage msg="Iam Fine" />
+          <ChatMessage msg="Iam Fine" isUser={true} />
+          <ChatMessage msg="Iam Fine" isUser={true} />
+          <ChatMessage msg="Iam Fine" isUser={true} />
+          <ChatMessage isUser={true}  msg="Iam Fine" />
+          <ChatMessage msg="Iam Fine" />
+          <ChatMessage msg="Iam Fine" />
+          <ChatMessage msg="Iam Fine" isUser={true} />
         </div>
       </div>
       <ChatInput />
