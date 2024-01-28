@@ -9,9 +9,9 @@ export default function ChatLayout({
 }) {
   return (
     <ProtectedRoute>
-      <main className="flex overflow-y-hidden h-screen">
+      <main className="flex bg-purple-700 overflow-y-hidden h-screen">
         <SideBar />
-        <section className="bg-black h-full w-full flex-1 p-2 flex space-y-2 flex-col text-white">
+        <section className="  h-full w-full flex-1 p-1 flex space-y-1 flex-col text-white">
           <ChatHeader />
           {children}
         </section>

@@ -15,7 +15,7 @@ export default function SearchBar() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-black py-2 px-4 text-white flex items-center md:gap-8 rounded-md"
+      className="bg-black border-2 border-purple-700 py-2 h-14 px-4 text-white flex items-center md:gap-8 rounded-md"
     >
       <span className="flex items-center">
         <LiaSearchSolid size="22px" />
