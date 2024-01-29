@@ -1,6 +1,7 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
+import { useUserStore } from "@/store/userStore";
 import { FormEvent, useState } from "react";
 import { LiaSearchSolid } from "react-icons/lia";
 
@@ -12,10 +13,13 @@ export default function SearchBar() {
     if (!search) return;
     setSearch("");
   };
+  let color = 'bg-purple-700'.replace('bg','')
+  useUserStore((state) => color = "border"+state.themeColor.replace('bg',''))
+
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-black border-2 border-purple-700 py-2 h-14 px-4 text-white flex items-center md:gap-8 rounded-md"
+      className={`bg-black border-2 ${color} py-1 h-14 px-4 text-white flex items-center md:gap-8 rounded-md`}
     >
       <span className="flex items-center">
         <LiaSearchSolid size="22px" />

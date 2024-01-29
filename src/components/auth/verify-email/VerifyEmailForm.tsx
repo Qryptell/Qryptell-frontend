@@ -16,6 +16,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 import AuthSubmitButton from "../AuthSubmitButton";
+import { jwtDecode } from "jwt-decode";
 
 const formSchema = z.object({
   otp: z.string().min(6, {
@@ -26,6 +27,8 @@ const formSchema = z.object({
 export default function VerifyEmailForm() {
   const router = useRouter();
   const setAccessToken = useUserStore((state) => state.setAccessToken);
+  const setUsername = useUserStore((state) => state.setUsername);
+
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -47,8 +50,11 @@ export default function VerifyEmailForm() {
 
           if (!data?.success)
             return toast.error(data?.message || "Something went wrong!");
-
           setAccessToken(data?.accessToken);
+          setAccessToken(data?.accessToken);
+          let username: string = ''
+          username = jwtDecode<{ username: string }>(data?.accessToken)?.username;
+          setUsername(username)
           toast.success("Logged in successfully!");
           router.push("/chat");
         });
