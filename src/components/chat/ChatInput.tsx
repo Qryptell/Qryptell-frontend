@@ -15,17 +15,16 @@ const Picker = dynamic(
 );
 
 export default function ChatInput() {
-  const [message, setMessage] = useState<string>("");
+  const [message, setMessage] = useState<string>();
   const [showEmojis, setShowEmojis] = useState<boolean>(false);
 
   const handleEmojiClick = ({ emoji }: { emoji: string }) => {
-    setMessage((prev) => prev + emoji);
+    console.log(message)
+    setMessage(message+emoji);
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setMessage("");
-
     if (!message) return;
   };
   return (
@@ -34,28 +33,29 @@ export default function ChatInput() {
         className="bg-[#221F1F] rounded-md w-full p-4 flex items-center fixed bottom-0"
         onSubmit={handleSubmit}
       >
-        <div className="flex items-center space-x-4 flex-1">
+        <div className="flex items-center space-x-5 flex-1">
           <FaPlusCircle size="25" />
           <Input
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Message"
-            className="bg-transparent ring-0 border-0 outline-none w-full focus-visible:ring-0 
+            className="bg-transparent ring-0 border-0 outline-none w-4/6 focus-visible:ring-0 
             focus-visible:outline-none"
           />
+          <Button
+            onClick={() => setShowEmojis(!showEmojis)}
+            variant="ghost"
+            className="bg-transparent hover:bg-transparent hover:text-white"
+          >
+            <FaRegFaceSmile size="25" />
+          </Button>
         </div>
 
-        <Button
-          onClick={() => setShowEmojis(!showEmojis)}
-          variant="ghost"
-          className="bg-transparent hover:bg-transparent hover:text-white"
-        >
-          <FaRegFaceSmile size="25" />
-        </Button>
+
 
         {showEmojis && (
-          <div className="absolute bottom-20 right-2">
+          <div className="absolute bottom-20 right-80">
             <Picker onEmojiClick={handleEmojiClick} lazyLoadEmojis={true} />
           </div>
         )}
