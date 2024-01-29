@@ -57,11 +57,7 @@ export default function LoginForm() {
             return toast.error(res?.data?.message || "Something went wrong!");
           setAccessToken(res?.data?.accessToken);
           let username: string = ''
-          useUserStore((state) => {
-            if (state.accessToken) {
-              username = jwtDecode<{ username: string }>(state.accessToken)?.username;
-            }
-          });
+          username = jwtDecode<{ username: string }>(res?.data?.accessToken)?.username;
           setUsername(username)
           toast.success("Logged in successfully!");
           router.push("/chat");
