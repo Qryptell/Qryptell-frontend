@@ -18,6 +18,7 @@ import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { toast } from "sonner";
 import * as z from "zod";
 import AuthSubmitButton from "../AuthSubmitButton";
+import collection from "@/configurations/collection";
 
 const formSchema = z.object({
   username: z.string().min(3, {
@@ -52,17 +53,13 @@ export default function RegisterForm() {
     console.log(registerData);
     try {
       axios
-        .post("http://localhost:4000/auth/register", registerData, axiosConfig)
+        .post(collection.SERVER_AUTH_URL+"/auth/register", registerData, axiosConfig)
         .then(({ data }: AxiosResponse) => {
-          console.log(data);
-
           if (!data?.success) return toast.error(data?.message);
-
           toast.success(data?.message);
           router.push("/verify-email");
         });
     } catch (error) {
-      console.log(error);
       toast.error((error as Error).message || "Something went wrong");
     } finally {
       form.reset();

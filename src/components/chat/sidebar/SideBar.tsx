@@ -31,16 +31,11 @@ export default function SideBar({ themeColor }: { themeColor: string }) {
         className="py-4 bg-black rounded-lg flex px-2 flex-col space-y-5 font-semibold text-white/70 overflow-y-scroll
        scrollbar-hide h-full pb-20"
       >
-        <UserList />
-        <UserList />
-        <UserList />
-        <UserList />
-        <UserList />
-        <UserList />
-        <UserList />
-        <UserList />
-        <UserList />
-        <UserList />
+        {
+          friends.map((friendname)=>(
+            <UserList username={friendname} />
+          ))
+        }
       </div>
     </section>
   );

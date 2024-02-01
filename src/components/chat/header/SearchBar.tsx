@@ -1,20 +1,23 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
+import Popup from "@/components/ui/profile-popup";
 import { useUserStore } from "@/store/userStore";
 import { FormEvent, useState } from "react";
 import { LiaSearchSolid } from "react-icons/lia";
 
 export default function SearchBar() {
   const [search, setSearch] = useState<string>("");
+  const [showUserPopup, setShowUserPopup] = useState<boolean>(false)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!search) return;
-    setSearch("");
+    console.log(search)
+    setShowUserPopup(true)
   };
-  let color = 'bg-purple-700'.replace('bg','')
-  useUserStore((state) => color = "border"+state.themeColor.replace('bg',''))
+  let color = 'bg-purple-700'.replace('bg', '')
+  useUserStore((state) => color = "border" + state.themeColor.replace('bg', ''))
 
   return (
     <form
@@ -30,6 +33,7 @@ export default function SearchBar() {
           onChange={(e) => setSearch(e.target.value)}
         />
       </span>
+      {showUserPopup && <Popup searchedname={search} handleClose={() => { setShowUserPopup(false) }} />}
       <button
         disabled={!search}
         type="submit"

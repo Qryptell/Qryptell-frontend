@@ -14,7 +14,7 @@ export default function ChatMessage({ isUser, image, msg }: { isUser?: boolean, 
       <div
         className={cn(
           "py-2 px-4 rounded-t-2xl max-w-fit",
-          isUser ? "bg-purple-800 rounded-bl-2xl" : "bg-pink-700  rounded-br-2xl",
+          isUser ? "border border-purple-800 rounded-bl-2xl" : "border border-pink-700  rounded-br-2xl",
           image && "py-1 px-1"
         )}
       >

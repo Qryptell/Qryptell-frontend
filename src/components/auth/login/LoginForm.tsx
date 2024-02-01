@@ -19,7 +19,8 @@ import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { toast } from "sonner";
 import * as z from "zod";
 import AuthSubmitButton from "../AuthSubmitButton";
-import {jwtDecode,JwtPayload} from 'jwt-decode'
+import { jwtDecode, JwtPayload } from 'jwt-decode'
+import collection from "@/configurations/collection";
 
 const formSchema = z.object({
   email: z.string().min(5, {
@@ -49,10 +50,8 @@ export default function LoginForm() {
     console.log(values);
     try {
       axios
-        .post("http://localhost:4000/auth/login", values)
+        .post(collection.SERVER_AUTH_URL + "/auth/login", values)
         .then((res: AxiosResponse) => {
-          console.log(res);
-
           if (!res?.data?.success)
             return toast.error(res?.data?.message || "Something went wrong!");
           setAccessToken(res?.data?.accessToken);

@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import * as z from "zod";
 import AuthSubmitButton from "../AuthSubmitButton";
 import { jwtDecode } from "jwt-decode";
+import collection from "@/configurations/collection";
 
 const formSchema = z.object({
   otp: z.string().min(6, {
@@ -44,7 +45,7 @@ export default function VerifyEmailForm() {
     try {
       console.log(values);
       axios
-        .post("http://localhost:4000/auth/verify-email", values, axiosConfig)
+        .post(collection.SERVER_AUTH_URL+"/auth/verify-email", values, axiosConfig)
         .then(({ data }: AxiosResponse) => {
           console.log(data);
 
