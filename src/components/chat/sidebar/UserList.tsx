@@ -1,7 +1,7 @@
 import Link from "next/link";
 import UserAvatar from "../header/UserAvatar";
 
-export default function UserList() {
+export default function UserList({username}:{username:string}) {
   return (
     <Link href="/chat/123">
       <div
@@ -9,7 +9,7 @@ export default function UserList() {
          hover:bg-[#333A41] cursor-pointer"
       >
         <UserAvatar height={40} width={40} />
-        <p className="text-sm">Mohamed Alan</p>
+        <p className="text-sm">{username}</p>
       </div>
     </Link>
   );
