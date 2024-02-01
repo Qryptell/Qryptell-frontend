@@ -33,7 +33,7 @@ export default function SideBar({ themeColor }: { themeColor: string }) {
       >
         {
           friends.map((friendname)=>(
-            <UserList username={friendname} />
+            <UserList key={friendname} username={friendname} />
           ))
         }
       </div>
