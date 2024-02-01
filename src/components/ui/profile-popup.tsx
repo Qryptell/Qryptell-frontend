@@ -43,7 +43,7 @@ export default function Popup({ searchedname, handleClose }: { searchedname: str
   }
   return (
     <div className='backdrop-blur-sm  fixed left-0 top-0 w-full z-50 h-screen flex justify-center items-center'>
-      <div className='fixed h-2/4 p-5 pt-0 w-1/4  flex border border-teal-500 rounded-lg justify-center shadow-lg top bg-black'>
+      <div className='fixed h-2/4 p-5 pt-0 w-1/4 md:w-full  flex border border-teal-500 rounded-lg justify-center shadow-lg top bg-black'>
         <div className='text-white/90 pt-3 w-11/12 h-full flex flex-col items-center text-center' >
           <div className='flex justify-end w-full'><div onClick={handleClose} className='rounded-full hover:bg-red-400/30 cursor-pointer p-1'><FaX /></div></div>
           <UserAvatar width={100} height={100} />
