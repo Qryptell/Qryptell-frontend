@@ -21,6 +21,9 @@ import AuthSubmitButton from "../AuthSubmitButton";
 import collection from "@/configurations/collection";
 
 const formSchema = z.object({
+  name: z.string().min(3, {
+    message: "Your name should have  3 characters",
+  }),
   username: z.string().min(3, {
     message: "Username should have  3 characters",
   }),
@@ -39,6 +42,7 @@ export default function RegisterForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      name:"",
       username: "",
       email: "",
       password: "",
@@ -69,6 +73,24 @@ export default function RegisterForm() {
     <div className="flex flex-col w-full space-y-2.5">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormMessage className="text-start" />
+                <FormControl>
+                  <Input
+                    type="text"
+                    placeholder="Your Name"
+                    {...field}
+                    className="w-full rounded-sm py-6 bg-zinc-200/40 border-[.5px]
+                    focus-visible:ring-0 peer border-black/50"
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name="username"
