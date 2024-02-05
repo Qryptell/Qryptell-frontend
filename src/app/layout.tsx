@@ -6,8 +6,8 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "LunarLoom",
-  description: "Chat with LunarLoom end-to-end encrypted",
+  title: "Qryptell",
+  description: "Chat with Qryptell end-to-end encrypted",
 };
 
 export default function RootLayout({

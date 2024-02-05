@@ -5,8 +5,8 @@ import RegisterForm from "@/components/auth/register/RegisterForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "LunarLoom-Register",
-  description: "Register to use LunarLoom",
+  title: "Qryptell-Register",
+  description: "Register to use Qryptell",
 };
 
 export default function RegisterPage() {
@@ -16,9 +16,9 @@ export default function RegisterPage() {
      items-center justify-center space-y-4 shadow-md"
     >
       <div className="gap-2 flex flex-col">
-        <h1 className="text-2xl font-bold">LunarLoom</h1>
+        <h1 className="text-2xl font-bold">Qryptell</h1>
         <p className="text-[#3E3E3E] text-sm md:w-80">
-          Sign up to see messages and open source projects from your LunarLoom.
+          Sign up to see messages and open source projects from your Qryptell.
         </p>
 
         {/* Github Login Button */}
