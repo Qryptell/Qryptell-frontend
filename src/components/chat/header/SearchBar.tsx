@@ -5,6 +5,7 @@ import Popup from "@/components/ui/profile-popup";
 import { useUserStore } from "@/store/userStore";
 import { FormEvent, useState } from "react";
 import { LiaSearchSolid } from "react-icons/lia";
+import { cn } from "@/lib/utils";
 
 export default function SearchBar() {
   const [search, setSearch] = useState<string>("");
@@ -22,7 +23,7 @@ export default function SearchBar() {
   return (
     <form
       onSubmit={handleSubmit}
-      className={`bg-black border-2 ${color} py-1 h-14 px-4 text-white flex items-center md:gap-8 rounded-md`}
+      className={cn(`bg-black border-2 border-purple-700 py-1 h-14 px-4 text-white flex items-center md:gap-8 rounded-md`)}
     >
       <span className="flex items-center">
         <LiaSearchSolid size="22px" />
