@@ -4,7 +4,7 @@ interface UserStore {
     username: string | null
     setUsername: (username: string) => void,
     themeColor: string,
-    setThemeColor: (themeColor: string) => void
+    setThemeColor: (themeColor: string) => void,
 }
 interface Collection {
     SERVER_AUTH_URL: string,

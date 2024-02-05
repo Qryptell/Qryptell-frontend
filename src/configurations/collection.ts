@@ -1,7 +1,7 @@
 
 const collection:Collection = {
-    SERVER_AUTH_URL: "https://qryptell-auth-service.onrender.com",
-    SERVER_USER_URL: "https://qriptell-user-service.onrender.com",
+    SERVER_AUTH_URL: "http://localhost:4000",
+    SERVER_USER_URL: "http://localhost:4001",
     PROTECT:false
 }
 

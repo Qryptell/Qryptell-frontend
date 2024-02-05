@@ -3,7 +3,6 @@ import ChatHeader from "@/components/chat/header/ChatHeader";
 import SideBar from "@/components/chat/sidebar/SideBar";
 import ProtectedRoute from "@/providers/ProtectedRoute";
 import { useUserStore } from "@/store/userStore";
-import { useState } from "react";
 
 export default function ChatLayout({
   children,
