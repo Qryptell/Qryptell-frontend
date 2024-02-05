@@ -5,7 +5,7 @@ import VerifyEmailForm from "@/components/auth/verify-email/VerifyEmailForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "LunarLoom Vrify Email",
+  title: "Qryptell Vrify Email",
   description: "Verify email with otp",
 };
 
@@ -16,7 +16,7 @@ export default function LoginPage() {
      items-center justify-center space-y-4 shadow-md "
     >
       <div className="gap-2 flex flex-col">
-        <h1 className="text-2xl font-bold">LunarLoom</h1>
+        <h1 className="text-2xl font-bold">Qryptell</h1>
         <p className="text-[#3E3E3E] text-sm md:w-80">
           Enter the OTP to verify your email
         </p>

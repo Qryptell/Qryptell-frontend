@@ -5,8 +5,8 @@ import LoginForm from "@/components/auth/login/LoginForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "LunarLoom-Login",
-  description: "Login in to LunarLoom",
+  title: "Qryptell-Login",
+  description: "Login in to Qryptell",
 }; 
 
 export default function LoginPage() {
@@ -16,10 +16,10 @@ export default function LoginPage() {
      items-center justify-center space-y-4 shadow-md"
     >
       <div className="gap-2 flex flex-col">
-        <h1 className="text-2xl font-bold">LunarLoom</h1>
+        <h1 className="text-2xl font-bold">Qryptell</h1>
         <p className="text-[#3E3E3E] text-sm md:w-80">
           Login to see your messages and open source projects from your
-          LunarLoom.
+          Qryptell.
         </p>
 
         {/* Github Login Button */}
