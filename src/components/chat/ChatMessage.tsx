@@ -19,7 +19,7 @@ export default function ChatMessage({ isUser, image, msg }: { isUser?: boolean, 
         )}
       >
         {msg}
-        {image && <img src={image} className={cn(
+        {image && <img src={image} alt="image" className={cn(
           "w-300 h-auto max-w-full max-h-64 rounded-t-2xl",
           isUser ? "bg-purple-800 rounded-bl-2xl" : "bg-black  rounded-br-2xl")}
         />}
