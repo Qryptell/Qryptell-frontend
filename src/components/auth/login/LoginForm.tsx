@@ -10,7 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useUserStore } from "@/store/userStore";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -21,6 +21,7 @@ import * as z from "zod";
 import AuthSubmitButton from "../AuthSubmitButton";
 import { jwtDecode, JwtPayload } from 'jwt-decode'
 import collection from "@/configurations/collection";
+import Axios from "@/providers/Axios";
 
 const formSchema = z.object({
   email: z.string().min(5, {
@@ -47,10 +48,9 @@ export default function LoginForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     try {
-      axios
-        .post(collection.SERVER_AUTH_URL + "/auth/login", values)
+      Axios
+        .post("/auth/login", values)
         .then((res: AxiosResponse) => {
           if (!res?.data?.success)
             return toast.error(res?.data?.message || "Something went wrong!");
