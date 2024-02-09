@@ -2,10 +2,9 @@ import * as React from 'react'
 import UserAvatar from '../chat/header/UserAvatar'
 import { Button } from './button'
 import { FaX } from "react-icons/fa6";
-import axios from 'axios';
-import collection from '@/configurations/collection';
 import { useUserStore } from '@/store/userStore';
 import { toast } from 'sonner';
+import { AxiosProtected } from '@/providers/Axios';
 
 export default function Popup({ searchedname, handleClose }: { searchedname: string, handleClose: () => void }) {
 
@@ -17,14 +16,14 @@ export default function Popup({ searchedname, handleClose }: { searchedname: str
     createdDate: string
   }
 
-  axios.get(collection.SERVER_USER_URL + '/user/' + searchedname).then(({ data }) => {
+  AxiosProtected.get('/user/' + searchedname).then(({ data }) => {
     if (data.success) {
       setFriend(data.user)
       console.log(data.user)
     }
   })
   const addFriend = ()=>{
-    axios.patch(collection.SERVER_USER_URL+'/friend/requiest',{username,friendname:friend.username}).then(({data})=>{
+    AxiosProtected.patch('/friend/requiest',{username,friendname:friend.username}).then(({data})=>{
       if(data.success){
         toast.success(data.message)
       }else{
@@ -33,7 +32,7 @@ export default function Popup({ searchedname, handleClose }: { searchedname: str
     })
   }
   const blockUser = ()=>{
-    axios.patch(collection.SERVER_USER_URL+'/friend/block',{username,friendname:friend.username}).then(({data})=>{
+    AxiosProtected.patch('/friend/block',{username,friendname:friend.username}).then(({data})=>{
       if(data.success){
         toast.success(data.message)
       }else{

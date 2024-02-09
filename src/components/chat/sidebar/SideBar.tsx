@@ -3,15 +3,14 @@ import UserList from "./UserList";
 import Link from "next/link";
 import { useUserStore } from "@/store/userStore";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import collection from "@/configurations/collection";
 import { toast } from "sonner";
+import { AxiosProtected } from "@/providers/Axios";
 
 export default function SideBar({ themeColor }: { themeColor: string }) {
   const username = useUserStore((state) => state.username);
   const [friends, setFriends] = useState([])
   useEffect(() => {
-    axios.get(collection.SERVER_USER_URL + '/friend/' + username).then(({ data }) => {
+    AxiosProtected.get('/friend/' + username).then(({ data }) => {
       if (data.success) {
         setFriends(data.friends)
       } else {
