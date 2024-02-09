@@ -21,7 +21,7 @@ import * as z from "zod";
 import AuthSubmitButton from "../AuthSubmitButton";
 import { jwtDecode, JwtPayload } from 'jwt-decode'
 import collection from "@/configurations/collection";
-import Axios from "@/providers/Axios";
+import { Axios } from "@/providers/Axios";
 
 const formSchema = z.object({
   email: z.string().min(5, {

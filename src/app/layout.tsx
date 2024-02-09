@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
-import { AxiosProvider } from "@/providers/Axios";
+import AxiosProvider from "@/providers/Axios";
 
 const inter = Inter({ subsets: ["latin"] });
 

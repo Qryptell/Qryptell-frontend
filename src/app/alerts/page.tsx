@@ -5,12 +5,12 @@ import collection from "@/configurations/collection";
 import ProtectedRoute from "@/providers/ProtectedRoute";
 import { useUserStore } from "@/store/userStore";
 import {useEffect, useState} from 'react'
-import axios from "axios";
+import { AxiosProtected } from "@/providers/Axios";
 
 export default function AlertPage() {
   const [reqs,setReqs] = useState<string[]>([])
   const username = useUserStore((state)=>state.username)
-  axios.get(collection.SERVER_USER_URL+'/friend/reqs/'+username).then(({data})=>{
+  AxiosProtected.get('/friend/reqs/'+username).then(({data})=>{
     if(data.success){
       setReqs(data.reqs)
     }

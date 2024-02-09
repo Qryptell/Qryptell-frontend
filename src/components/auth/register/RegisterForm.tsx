@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -19,6 +19,7 @@ import { toast } from "sonner";
 import * as z from "zod";
 import AuthSubmitButton from "../AuthSubmitButton";
 import collection from "@/configurations/collection";
+import { Axios } from "@/providers/Axios";
 
 const formSchema = z.object({
   name: z.string().min(3, {
@@ -49,15 +50,10 @@ export default function RegisterForm() {
     },
   });
 
-  const axiosConfig: AxiosRequestConfig = {
-    withCredentials: true,
-  };
-
   async function onSubmit(registerData: z.infer<typeof formSchema>) {
     console.log(registerData);
     try {
-      axios
-        .post(collection.SERVER_AUTH_URL+"/auth/register", registerData, axiosConfig)
+        Axios.post("/auth/register", registerData)
         .then(({ data }: AxiosResponse) => {
           if (!data?.success) return toast.error(data?.message);
           toast.success(data?.message);

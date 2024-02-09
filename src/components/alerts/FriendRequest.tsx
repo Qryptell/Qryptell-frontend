@@ -1,16 +1,15 @@
 import { useState } from "react"
 import { FaCheck,FaX } from "react-icons/fa6"
 import Popup from "../ui/profile-popup"
-import axios from "axios"
-import collection from "@/configurations/collection"
 import { useUserStore } from "@/store/userStore"
 import { toast } from "sonner"
+import { AxiosProtected } from "@/providers/Axios"
 
 export default function FriendRequest({friendname,friendReqs,setReqs}:{friendname:string,friendReqs:string[],setReqs:(friends:string[])=>void}){
   const [show,setShow] = useState<boolean>(false)
   const username = useUserStore((state)=>state.username)
   const denyReq = ()=>{
-    axios.patch(collection.SERVER_USER_URL+"/friend/deny",{username,friendname}).then(({data})=>{
+    AxiosProtected.patch("/friend/deny",{username,friendname}).then(({data})=>{
       if(data.success){
         toast.success(data.message)
       }else{
@@ -20,7 +19,7 @@ export default function FriendRequest({friendname,friendReqs,setReqs}:{friendnam
     })
   }
  const acceptReq = ()=>{
-    axios.patch(collection.SERVER_USER_URL+"/friend/accept",{username,friendname}).then(({data})=>{
+   AxiosProtected.patch("/friend/accept",{username,friendname}).then(({data})=>{
       if(data.success){
         toast.success(data.message)
       }else{

@@ -10,7 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useUserStore } from "@/store/userStore";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -18,6 +18,7 @@ import * as z from "zod";
 import AuthSubmitButton from "../AuthSubmitButton";
 import { jwtDecode } from "jwt-decode";
 import collection from "@/configurations/collection";
+import { Axios } from "@/providers/Axios";
 
 const formSchema = z.object({
   otp: z.string().min(6, {
@@ -37,15 +38,11 @@ export default function VerifyEmailForm() {
       otp: "",
     },
   });
-  const axiosConfig: AxiosRequestConfig = {
-    withCredentials: true,
-  };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       console.log(values);
-      axios
-        .post(collection.SERVER_AUTH_URL+"/auth/verify-email", values, axiosConfig)
+        Axios.post("/auth/verify-email", values)
         .then(({ data }: AxiosResponse) => {
           console.log(data);
 
