@@ -30,17 +30,17 @@ export default function ChatInput() {
   return (
     <footer className="px-2 mb-2 w-full">
       <form
-        className="rounded-md w-full p-4 flex items-center fixed bottom-0"
+        className="border bg-black border-[#525252] rounded-md w-full p-1 flex items-center "
         onSubmit={handleSubmit}
       >
-        <div className="flex items-center space-x-5 flex-1">
+        <div className="flex items-center pl-2 space-x-5 flex-1">
           <FaPlusCircle size="25" />
           <Input
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Message"
-            className="bg-transparent ring-0 border-0 outline-none w-4/6 focus-visible:ring-0 
+            className="bg-transparent ring-0 border-0 outline-none w-full focus-visible:ring-0 
             focus-visible:outline-none"
           />
           <Button
@@ -51,8 +51,6 @@ export default function ChatInput() {
             <FaRegFaceSmile size="25" />
           </Button>
         </div>
-
-
 
         {showEmojis && (
           <div className="absolute bottom-20 right-80">

@@ -16,7 +16,7 @@ export default function ChatLayout({
     <ProtectedRoute>
       <main className={cn(`bg-black overflow-y-hidden h-screen`)} >
         <ChatHeader />
-        <section className="h-full w-full flex-1 flex pr-5 pb-3 text-white">
+        <section className="h-full w-full flex-1 flex pr-4 text-white">
           <SideBar themeColor={color} />
           {children}
         </section>

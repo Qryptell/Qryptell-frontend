@@ -18,7 +18,7 @@ export default function SideBar({ themeColor }: { themeColor: string }) {
         toast.error(data?.message || "Something went wrong!");
       }
     })
-  }, [])
+  }, [username])
   return (
     <section
       className={cn(`md:w-72 h-screen text-white `,themeColor)}
