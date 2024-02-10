@@ -11,10 +11,10 @@ type UserChatPageProps = {
 
 export default function UserChatPage({ params: { name } }: UserChatPageProps) {
   return (
-    <main className="bg-black h-[34rem] w-full  border border-[#525252] rounded-xl ">
-      <div className="h-[32rem] flex flex-col">
+    <main className="bg-black h-[34rem] mb-4 w-full border border-[#525252] rounded-2xl ">
+      <div className="h-[30.5rem] flex flex-col">
         <ChatNavbar name={name} />
-        <div className="flex-1 overflow-y-scroll ml-1 pb-52 pt-4 space-y-6 px-8 scrollbar-hide">
+        <div className="flex-1 overflow-y-scroll pb-52 pt-4 space-y-6 px-4 scrollbar-hide">
           <EncryptionMessage />
           <div className="space-y-2">
             <ChatMessage msg="hi" />
