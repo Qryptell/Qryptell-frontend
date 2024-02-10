@@ -5,7 +5,7 @@ const useUserStore = create<UserStore>((set) => ({
   setAccessToken: (accessToken) => set({ accessToken }),
   username: null,
   setUsername: (username) => set({ username }),
-  themeColor: "bg-purple-700",
+  themeColor: "bg-black",
   setThemeColor: (themeColor) => set({ themeColor })
 }));
 
