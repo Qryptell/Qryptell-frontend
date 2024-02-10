@@ -16,10 +16,11 @@ export default function UserAvatar({
     <Image
       src="/avatar.png"
       alt="avatar"
-      className={cn("rounded-full", className)}
+      className={cn("rounded-full object-cover", className)}
       width={width || 50}
       height={height || 50}
       quality={100}
+      style={{width:width || "50px",height:height || "50px"}}
       priority
     />
   );

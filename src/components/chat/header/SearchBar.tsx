@@ -23,7 +23,7 @@ export default function SearchBar() {
   return (
     <form
       onSubmit={handleSubmit}
-      className={cn(`bg-black border-2 border-purple-700 py-1 h-14 px-4 text-white flex items-center md:gap-8 rounded-md`)}
+      className={cn(`bg-black border border-[#525252] rounded-xl h-10 w-[25rem] px-4 text-white flex items-center md:gap-8 `)}
     >
       <span className="flex items-center">
         <LiaSearchSolid size="22px" />
@@ -35,13 +35,6 @@ export default function SearchBar() {
         />
       </span>
       {showUserPopup && <Popup searchedname={search} handleClose={() => { setShowUserPopup(false) }} />}
-      <button
-        disabled={!search}
-        type="submit"
-        className="bg-[#4D6069] py-2 px-4 text-xs rounded-md disabled:brightness-75"
-      >
-        Ctrl+K
-      </button>
     </form>
   );
 }
