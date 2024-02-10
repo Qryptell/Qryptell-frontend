@@ -14,7 +14,7 @@ export default function UserButton() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <UserAvatar height={50} width={50} />
+        <UserAvatar className="rounded-full" height={35} width={35} />
       </DropdownMenuTrigger>
       {/* <DropdownMenuContent className="bg-black text-white outline-none border-0">
         <DropdownMenuLabel className="hover:bg-[#333A41]">My Account</DropdownMenuLabel>
