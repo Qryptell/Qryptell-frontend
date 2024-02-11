@@ -4,12 +4,28 @@ import SideBar from "@/components/chat/sidebar/SideBar";
 import ProtectedRoute from "@/providers/ProtectedRoute";
 import { useUserStore } from "@/store/userStore";
 import { cn } from '@/lib/utils'
+import { useEffect, useState } from "react";
 
 export default function ChatLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
+  const [webSocket, SetWebSocket] = useState<WebSocket>();
+  const authToken = useUserStore((state) => state.accessToken);
+
+  useEffect(() => {
+    SetWebSocket(
+      new WebSocket("ws://lunarloom.com/ws?Authentication=" + authToken),
+    );
+    return () => {
+      if (webSocket) {
+        webSocket.close();
+      }
+    };
+  }, [authToken]);
+
   let color = 'bg-black'
   useUserStore((state) => color = state.themeColor)
   return (
