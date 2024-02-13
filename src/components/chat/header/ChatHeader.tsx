@@ -1,11 +1,11 @@
 "use client";
+
 import { FaBell } from "react-icons/fa";
 import SearchBar from "./SearchBar";
 import UserButton from "./UserButton";
 import  Link  from  "next/link"
 
 export default function ChatHeader() {
-
   return (
     <header className=" bg-black w-full p-3 flex items-center justify-between">
       <Link href="/chat" className="bg-black">
