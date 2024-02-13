@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-export default function NotFound() {
+function NotFound() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-black space-y-4">
+    <main className="flex flex-col items-center justify-center min-h-screen bg-black">
       <h2 className="text-xl font-bold text-white mt-3">404. Page not found</h2>
 
       <p className="text-lg text-white mt-2">
@@ -10,13 +10,12 @@ export default function NotFound() {
       </p>
 
       <Link href="/">
-        <button
-          className="py-2.5 px-10 bg-gradient-to-tr from-[#181717] to-[#4d4c4c] 
-        rounded-full hover:opacity-90 hover:brightness-90"
-        >
-          Back to Home.
+        <button className="px-4 py-2 mt-5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-md shadow-md">
+          Home
         </button>
       </Link>
     </main>
   );
 }
+
+export default NotFound;
