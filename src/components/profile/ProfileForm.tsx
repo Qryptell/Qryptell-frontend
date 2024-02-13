@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -28,7 +27,7 @@ export default function ProfileForm() {
     console.log(values);
   }
   return (
-    <section className="w-full md:w-1/2 ">
+    <section className="w-full md:w-1/2 relative">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="border border-[#505050] px-4 py-6 rounded-xl space-y-6">
@@ -160,6 +159,10 @@ export default function ProfileForm() {
           </div>
         </form>
       </Form>
+      <div
+        className="absolute top-0 right-0 bg-gradient-to-b from-white/10 via-white/70
+       to-white/20 h-full w-10 filter blur-3xl"
+      />
     </section>
   );
 }
