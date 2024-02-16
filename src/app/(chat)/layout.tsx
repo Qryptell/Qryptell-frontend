@@ -4,7 +4,8 @@ import SideBar from "@/components/chat/sidebar/SideBar";
 import ProtectedRoute from "@/providers/ProtectedRoute";
 import { useUserStore } from "@/store/userStore";
 import { cn } from '@/lib/utils'
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
+import { useChatStore } from "@/store/chatStore";
 
 export default function ChatLayout({
   children,
@@ -12,11 +13,12 @@ export default function ChatLayout({
   children: React.ReactNode;
 }) {
 
-  const [webSocket, SetWebSocket] = useState<WebSocket>();
   const authToken = useUserStore((state) => state.accessToken);
+  const webSocket = useChatStore((state) => state.webSocket);
+  const setWebSocket = useChatStore((state) => state.setWebSocket);
 
   useEffect(() => {
-    SetWebSocket(
+    setWebSocket(
       new WebSocket("ws://lunarloom.com/ws?Authentication=" + authToken),
     );
     return () => {

@@ -11,3 +11,17 @@ interface Collection {
     SERVER_USER_URL: string,
     PROTECT: boolean
 }
+interface Msg {
+    id: string,
+    from: string,
+    to: string,
+    type: string,
+    content: string,
+    message: string
+}
+interface Chat {
+    messages: Msg[],
+    setMessage: (messages: Msg[]) => void,
+    webSocket: WebSocket | null,
+    setWebSocket: (webSocket: WebSocket) => void,
+}
