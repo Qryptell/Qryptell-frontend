@@ -4,7 +4,7 @@ const useChatStore = create<Chat>((set) => ({
     messages: [],
     setMessage: (messages) => set({messages}),
     webSocket: null,
-    setWebSocket: (socket) => ({socket}),
+    setWebSocket: (webSocket) => set({webSocket}),
 }));
 
 export { useChatStore };
