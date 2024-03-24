@@ -9,11 +9,12 @@ type UserChatPageProps = {
   };
 };
 
-export default function UserChatPage({ params: { name } }: UserChatPageProps) {
+export default function UserChatPage({ params: { name: id } }: UserChatPageProps) {
+
   return (
     <main className="bg-black h-[34rem] mb-4 w-full border border-[#525252] rounded-2xl ">
       <div className="h-[30.5rem] flex flex-col">
-        <ChatNavbar name={name} />
+        <ChatNavbar name={id} />
         <div className="flex-1 overflow-y-scroll pb-52 pt-4 space-y-6 px-4 scrollbar-hide">
           <EncryptionMessage />
           <div className="space-y-2">
@@ -33,7 +34,7 @@ export default function UserChatPage({ params: { name } }: UserChatPageProps) {
           </div>
         </div>
       </div>
-      <ChatInput />
+      <ChatInput chatId={id}/>
     </main>
   );
 }
