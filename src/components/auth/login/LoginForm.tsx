@@ -19,8 +19,7 @@ import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { toast } from "sonner";
 import * as z from "zod";
 import AuthSubmitButton from "../AuthSubmitButton";
-import { jwtDecode, JwtPayload } from 'jwt-decode'
-import collection from "@/configurations/collection";
+import { jwtDecode } from 'jwt-decode'
 import { Axios } from "@/providers/Axios";
 
 const formSchema = z.object({
@@ -36,6 +35,7 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const setAccessToken = useUserStore((state) => state.setAccessToken);
   const setUsername = useUserStore((state) => state.setUsername);
+  const setUserId = useUserStore((state) => state.setUsername);
 
   const router = useRouter();
 
@@ -56,8 +56,11 @@ export default function LoginForm() {
             return toast.error(res?.data?.message || "Something went wrong!");
           setAccessToken(res?.data?.accessToken);
           let username: string = ''
+          let userId: string = ''
           username = jwtDecode<{ username: string }>(res?.data?.accessToken)?.username;
+          userId = jwtDecode<{ userId: string }>(res?.data?.accessToken)?.userId;
           setUsername(username)
+          setUserId(userId)
           toast.success("Logged in successfully!");
           router.push("/chat");
         });

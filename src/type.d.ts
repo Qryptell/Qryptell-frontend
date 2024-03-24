@@ -3,6 +3,8 @@ interface UserStore {
     setAccessToken: (accessToken: string) => void
     username: string | null
     setUsername: (username: string) => void,
+    userId: string | null
+    setUserId: (userId: string) => void,
     themeColor: string,
     setThemeColor: (themeColor: string) => void,
 }

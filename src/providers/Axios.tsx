@@ -18,6 +18,7 @@ var AxiosProtected = axios.create({
 export default function AxiosProvider({ children }: { children: ReactNode }) {
     const setAccessToken = useUserStore((state) => state.setAccessToken);
     const setUsername = useUserStore((state) => state.setUsername);
+    const setUserId = useUserStore((state) => state.setUsername);
 
     function createAxiosResponseInterceptor() {
         AxiosProtected.interceptors.response.use(
@@ -31,7 +32,9 @@ export default function AxiosProvider({ children }: { children: ReactNode }) {
                     .then((res) => {
                         setAccessToken(res?.data?.accessToken);
                         let username: string = jwtDecode<{ username: string }>(res?.data?.accessToken)?.username;
+                        let userId: string = jwtDecode<{ userId: string }>(res?.data?.accessToken)?.userId;
                         setUsername(username)
+                        setUserId(userId)
                         return Axios(error.response.config);
                     })
                     .catch((error2) => {

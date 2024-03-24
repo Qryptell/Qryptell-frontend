@@ -30,6 +30,7 @@ export default function VerifyEmailForm() {
   const router = useRouter();
   const setAccessToken = useUserStore((state) => state.setAccessToken);
   const setUsername = useUserStore((state) => state.setUsername);
+  const setUserId = useUserStore((state) => state.setUsername);
 
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -51,8 +52,11 @@ export default function VerifyEmailForm() {
           setAccessToken(data?.accessToken);
           setAccessToken(data?.accessToken);
           let username: string = ''
+          let userId: string = ''
           username = jwtDecode<{ username: string }>(data?.accessToken)?.username;
+          userId = jwtDecode<{ userId: string }>(data?.accessToken)?.userId;
           setUsername(username)
+          setUserId(userId)
           toast.success("Logged in successfully!");
           router.push("/chat");
         });

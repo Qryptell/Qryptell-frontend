@@ -21,7 +21,7 @@ export default function ChatLayout({
 
   useEffect(() => {
     setWebSocket(
-        new WebSocket("ws://localhost:9000/ws?Authentication=" + authToken),
+        new WebSocket("ws://lunarloom.com/ws?Authentication=" + authToken),
     );
     return () => {
       if (webSocket) {
