@@ -18,10 +18,13 @@ interface Msg {
     type: string,
     content: string,
     message: string
+    time: string,
 }
 interface Chat {
+    chatId: string | null,
+    setChatId: (chatId: string) => void,
     messages: Msg[],
-    setMessage: (messages: Msg[]) => void,
+    addMessage: (message: Msg) => void,
     webSocket: WebSocket | null,
     setWebSocket: (webSocket: WebSocket) => void,
 }
