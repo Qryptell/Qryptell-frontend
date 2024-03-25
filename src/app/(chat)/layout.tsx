@@ -8,7 +8,7 @@ import { useEffect} from "react";
 import { useChatStore } from "@/store/chatStore";
 
 export default function ChatLayout({
-  children,
+  children
 }: {
   children: React.ReactNode;
 }) {
@@ -16,10 +16,12 @@ export default function ChatLayout({
   const authToken = useUserStore((state) => state.accessToken);
   const webSocket = useChatStore((state) => state.webSocket);
   const setWebSocket = useChatStore((state) => state.setWebSocket);
+  const chatId = useChatStore((state) => state.chatId);
+  const addMessage = useChatStore((state) => state.addMessage);
 
   useEffect(() => {
     setWebSocket(
-      new WebSocket("ws://lunarloom.com/ws?Authentication=" + authToken),
+        new WebSocket("ws://localhost:9000/ws?Authentication=" + authToken),
     );
     return () => {
       if (webSocket) {
@@ -27,6 +29,20 @@ export default function ChatLayout({
       }
     };
   }, [authToken]);
+
+    useEffect(() => {
+        if (webSocket) {
+            webSocket.addEventListener("message", (event) => {
+                let data = JSON.parse(event.data)
+                if (data.from == chatId || data.to == chatId) {
+                    switch (data.type) {
+                        case "USER_MSG":
+                            addMessage(data)
+                    }
+                }
+            })
+        } 
+    },[webSocket])
 
   let color = 'bg-black'
   useUserStore((state) => color = state.themeColor)

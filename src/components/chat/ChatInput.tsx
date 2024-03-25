@@ -18,6 +18,7 @@ export default function ChatInput({ chatId }: { chatId: string }) {
     const [message, setMessage] = useState<string>("");
     const [showEmojis, setShowEmojis] = useState<boolean>(false);
     const webSocket = useChatStore((state) => state.webSocket);
+    const addMessage = useChatStore((state) => state.addMessage);
 
     const handleEmojiClick = ({ emoji }: { emoji: string }) => {
         setMessage(message + emoji);
@@ -29,7 +30,7 @@ export default function ChatInput({ chatId }: { chatId: string }) {
         let time = new Date().toLocaleTimeString()
         let id = Math.random().toString(36)
         if (webSocket) {
-            var msg = {
+            var msg: Msg = {
                 type: 'USER_MSG',
                 content: 'TEXT_MESSAGE',
                 message,
@@ -37,6 +38,8 @@ export default function ChatInput({ chatId }: { chatId: string }) {
                 id: id,
                 time: time
             }
+
+            addMessage(msg)
             webSocket.send(JSON.stringify(msg))
         }
         setMessage("")
