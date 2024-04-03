@@ -2,16 +2,13 @@
 
 import FriendRequest from "@/components/alerts/FriendRequest";
 import ChatHeader from "@/components/chat/header/ChatHeader";
-import collection from "@/configurations/collection";
 import ProtectedRoute from "@/providers/ProtectedRoute";
-import { useUserStore } from "@/store/userStore";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AxiosProtected } from "@/providers/Axios";
 
 export default function AlertPage() {
   const [reqs, setReqs] = useState<string[]>([]);
-  const username = useUserStore((state) => state.username);
-  AxiosProtected.get("/friend/reqs/" + username).then(({ data }) => {
+  AxiosProtected.get("/friend/reqs/").then(({ data }) => {
     if (data.success) {
       setReqs(data.reqs);
     }

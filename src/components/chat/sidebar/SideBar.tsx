@@ -9,16 +9,20 @@ import {cn} from '@/lib/utils'
 
 export default function SideBar({ themeColor }: { themeColor: string }) {
   const username = useUserStore((state) => state.username);
+
   const [friends, setFriends] = useState([])
   useEffect(() => {
-    AxiosProtected.get('/friend/' + username).then(({ data }) => {
+      AxiosProtected.get('/friend/').then((data) => {
       if (data.success) {
         setFriends(data.friends)
       } else {
         toast.error(data?.message || "Something went wrong!");
       }
+    }).catch((e) => {
+        setFriends([])
     })
   }, [username])
+
   return (
     <section
       className={cn(`md:w-72 h-screen text-white `,themeColor)}
