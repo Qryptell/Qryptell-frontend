@@ -1,6 +1,6 @@
 "use client";
 import { useUserStore } from "@/store/userStore";
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import { jwtDecode } from "jwt-decode";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";
@@ -10,15 +10,19 @@ var Axios = axios.create({
     withCredentials: true,
 });
 
-var AxiosProtected = axios.create({
-    baseURL: "http://lunarloom.com",
-    withCredentials: true,
-});
+var AxiosProtected: AxiosInstance
 
 export default function AxiosProvider({ children }: { children: ReactNode }) {
     const setAccessToken = useUserStore((state) => state.setAccessToken);
+    const accessToken = useUserStore((state) => state.accessToken);
     const setUsername = useUserStore((state) => state.setUsername);
     const setUserId = useUserStore((state) => state.setUsername);
+
+    AxiosProtected = axios.create({
+        baseURL: "http://lunarloom.com",
+        withCredentials: true,
+        headers: { "Authorization": "Bearer " + accessToken }
+    });
 
     function createAxiosResponseInterceptor() {
         AxiosProtected.interceptors.response.use(
