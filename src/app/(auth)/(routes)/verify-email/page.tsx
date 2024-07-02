@@ -5,7 +5,7 @@ import VerifyEmailForm from "@/components/auth/verify-email/VerifyEmailForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Qryptell Vrify Email",
+  title: "Qryptell Verify Email",
   description: "Verify email with otp",
 };
 

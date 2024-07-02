@@ -1,6 +1,5 @@
 "use client";
 
-import { FaBell } from "react-icons/fa";
 import SearchBar from "./SearchBar";
 import UserButton from "./UserButton";
 import  Link  from  "next/link"

@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 
 var Axios = axios.create({
-    baseURL: "http://lunarloom.com",
+    baseURL: "http://qryptell.com",
     withCredentials: true,
 });
 
@@ -19,7 +19,7 @@ export default function AxiosProvider({ children }: { children: ReactNode }) {
     const setUserId = useUserStore((state) => state.setUsername);
 
     AxiosProtected = axios.create({
-        baseURL: "http://lunarloom.com",
+        baseURL: "http://qryptell.com",
         withCredentials: true,
         headers: { "Authorization": "Bearer " + accessToken }
     });
